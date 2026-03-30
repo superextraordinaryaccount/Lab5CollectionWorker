@@ -58,8 +58,9 @@ public class FileManager {
         }
         try (FileOutputStream fileOutputStream = new FileOutputStream(filename);
              PrintWriter writer = new PrintWriter(new OutputStreamWriter(fileOutputStream))) {
-            for (Map.Entry<String, Worker> entry : collection.entrySet()) {
-                writer.println(workerToString(entry.getKey(), entry.getValue()));
+            for (String key : collection.keySet()) {
+                Worker worker = collection.get(key);
+                writer.println(workerToString(key, worker));
             }
         }
     }

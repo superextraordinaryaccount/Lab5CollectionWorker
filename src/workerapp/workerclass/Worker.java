@@ -25,8 +25,8 @@ public class Worker implements Comparable<Worker> {
     private Person person; // Поле не может быть null
 
     /**
-     * Конструктор для создания нового работника (без id и creationDate).
-     * id и creationDate будут установлены позже.
+     * У резанный конструктор для создания нового работника (без id и creationDate).
+     * id и creationDate будут сгенерированы автоматически
      */
     public Worker(String name, Coordinates coordinates, long salary, Date startDate,
                   ZonedDateTime endDate, Position position, Person person) {
@@ -40,7 +40,7 @@ public class Worker implements Comparable<Worker> {
     }
 
     /**
-     * Полный конструктор для загрузки из CSV.
+     * Полный конструкто Worker для загрузки из CSV-файла.
      */
     public Worker(long id, String name, Coordinates coordinates, LocalDate creationDate,
                   long salary, Date startDate, ZonedDateTime endDate, Position position, Person person) {
@@ -49,7 +49,7 @@ public class Worker implements Comparable<Worker> {
         setCreationDate(creationDate);
     }
 
-    // Геттеры и сеттеры с валидацией
+    // Геттеры и сеттеры с валидацией(проверкой)
 
     public long getId() {
         return id;

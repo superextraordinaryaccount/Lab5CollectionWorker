@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 import java.util.*;
 
 /**
- * Обеспечивает ввод объектов с валидацией и повторными попытками.
+ * Обеспечивает ввод пользователем объектов с валидацией(проверкой) и повторными попытками.
  */
 public class InputManager {
     private final Scanner scanner;

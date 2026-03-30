@@ -1,6 +1,10 @@
+import workerapp.commands.InfoCmd;
 import workerapp.managers.*;
-import workerapp.commands.CommandExecutor;
+import workerapp.commands.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -20,14 +24,32 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         InputManager inputManager = new InputManager(scanner, System.out);
-        CommandExecutor executor = new CommandExecutor(collectionManager, fileManager, inputManager);
+        // Список изначальных команд,не включая работу со скриптами и историей
+        List<Commands> commands = Arrays.asList(
+                new HelpCmd(),
+                new InfoCmd(collectionManager),
+                new InsertCmd(collectionManager,inputManager),
+                new ShowCmd(collectionManager),
+                new ClearCmd(collectionManager),
+                new SaveCmd(collectionManager,fileManager),
+                new ExitCmd(),
+                new RemoveGreaterCmd(collectionManager,inputManager),
+                new RemoveLowerCmd(collectionManager,inputManager),
+                new MaxByEndDateCmd(collectionManager),
+                new CountByPersonCmd(collectionManager,inputManager),
+                new FilterLessThanEndDateCmd(collectionManager,inputManager),
+                new UpdateCmd(collectionManager,inputManager)
+
+        );
+
+        CommandDisp executor = new CommandDisp(commands);
 
         System.out.println("Программа запущена. Введите help для списка команд.");
 
         while (true) {
             System.out.print("> ");
             String line = scanner.nextLine();
-            executor.executeCommand(line);
+            executor.executeCmd(line);
         }
     }
 }

@@ -58,9 +58,9 @@ public class CollectionManager {
      * Обновляет существующий элемент по id (поля, кроме id и creationDate).
      */
     public boolean updateById(long id, Worker newWorker) {
-        for (Map.Entry<String, Worker> entry : collection.entrySet()) {
-            if (entry.getValue().getId() == id) {
-                Worker old = entry.getValue();
+        for (String key : collection.keySet()) {
+            if (collection.get(key).getId() == id) {
+                Worker old = collection.get(key);
                 old.setName(newWorker.getName());
                 old.setCoordinates(newWorker.getCoordinates());
                 old.setSalary(newWorker.getSalary());
